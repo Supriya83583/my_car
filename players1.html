@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Central</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Stencil', sans-serif;
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVJhSFCFzH72ZYdzzRvXrPNI72u8isPDLPrw&s);
+    }
+
+    .navbar {
+      background-color: #111;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      width: 150px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ff0000;
+    }
+
+    .signin {
+      background-color: white;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      color: black;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .team-section {
+      padding: 40px 20px;
+    }
+
+    .team-img-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .team-img-container img.main-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid #444;
+      border-radius: 10px;
+    }
+
+    .team-logo {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background-color: white;
+      padding: 2px;
+    }
+
+    .team-name {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+     
+      color: white;
+      background: rgb(0, 0, 0);
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+        .flag-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeOut 1s 0.5s forwards; /* Show for half sec, fade for 1 sec */
+    }
+
+    .flag {
+      width: 1000px;
+      height: 1000px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRWBEp6rD2DgCG03cW7tywML0bqYkfWup1A&s");
+      background-size: cover;
+      animation: waveFlag 1s ease-in-out infinite;
+    }
+
+    @keyframes waveFlag {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .results-section {
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1.5s forwards; 
+      padding: 60px 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv9tp5_4ykuziPP2ISVFpszH6aJ99bcRs6g&s" class="logo me-3">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index1.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="cars1.html">CARS</a></li>
+          <li class="nav-item"><a class="nav-link " href="teams1.html">TEAMS</a></li>
+          <li class="nav-item"><a class="nav-link" href="players1.html">PLAYERS</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule1.html">SCHEDULE</a></li>
+          <li class="nav-item"><a class="nav-link" href="results1.html">RESULTS</a></li>
+        </ul>
+        <button class="signin">Sign in</button>
+      </div>
+    </div>
+  </nav>
+
+    <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+
+  <!-- TEAMS SECTION -->
+  <div class="container team-section">
+  <h2 class="mb-4 text-danger text-center">F1 PLAYERS</h2>
+  <div class="row g-4">
+    
+    <!-- p1 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-3.motorsport.com/images/mgl/6D1XbeV0/s8/max-verstappen-red-bull-racing.jpg" class="main-img" alt="Max Verstappen">
+        <div class="team-name">Max Verstappen – Red Bull</div>
+      </div>
+    </div>
+
+    <!-- p2 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc1YYcmqAIIUtxn3Nmi56xZlttbAx5nldkvw&s" class="main-img" alt="Sergio Pérez">
+        <div class="team-name">Sergio Pérez – Red Bull</div>
+      </div>
+    </div>
+
+    <!-- p3 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-9.motorsport.com/images/mgl/YMdm7R32/s8/charles-leclerc-ferrari.jpg" class="main-img" alt="Charles Leclerc">
+        <div class="team-name">Charles Leclerc – Ferrari</div>
+      </div>
+    </div>
+
+    <!-- p4 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZurFMIrSaWb4b4Kh6uvObBmJ3C_ONlrPk0A&s" class="main-img" alt="Carlos Sainz">
+        <div class="team-name">Carlos Sainz – Ferrari</div>
+      </div>
+    </div>
+
+    <!-- p5 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-9.motorsport.com/images/mgl/63kygeJ6/s800/f1-mercedes-amg-f1-w09-launch-2018-lewis-hamilton-mercedes-amg-f1.jpg" class="main-img" alt="Lewis Hamilton">
+        <div class="team-name">Lewis Hamilton – Mercedes</div>
+      </div>
+    </div>
+
+    <!-- p6 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img style="background-color: #fff;" src="https://images.ctfassets.net/1fvlg6xqnm65/66fJ1wrYcN0LBtsmPQjcTC/0ffbd03a4a5e0cc5396746216c1d154f/George_Russell.png?w=3840&q=75&fm=webp" class="main-img" alt="George Russell">
+        <div class="team-name">George Russell – Mercedes</div>
+      </div>
+    </div>
+
+    <!-- p7 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://e0.365dm.com/24/02/768x432/skysports-lando-norris-mclaren_6455066.png?20240214092725" class="main-img" alt="Lando Norris">
+        <div class="team-name">Lando Norris – McLaren</div>
+      </div>
+    </div>
+
+    <!-- p8 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-5.motorsport.com/images/mgl/YBe5yNn2/s8/oscar-piastri-mclaren.jpg" class="main-img" alt="Oscar Piastri">
+        <div class="team-name">Oscar Piastri – McLaren</div>
+      </div>
+    </div>
+
+    <!-- p9 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLcmcPF5LBTiFc8b7g9eOBJ9tuuOhvgzaUg&s" class="main-img" alt="Fernando Alonso">
+        <div class="team-name">Fernando Alonso – Aston Martin</div>
+      </div>
+    </div>
+
+    <!-- p10 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://mrwallpaper.com/images/high/lance-stroll-white-background-2yeryvpvjeurjco1.jpg" class="main-img" alt="Lance Stroll">
+        <div class="team-name">Lance Stroll – Aston Martin</div>
+      </div>
+    </div>
+
+    <!-- p11 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-8.motorsport.com/images/mgl/Y99KyPxY/s800/esteban-ocon-haas-f1-team.jpg" class="main-img" alt="Esteban Ocon">
+        <div class="team-name">Esteban Ocon – Alpine</div>
+      </div>
+    </div>
+
+    <!-- p12 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://i.pinimg.com/736x/86/95/69/869569720d0fe6d43c9ea13117eb79ad.jpg" class="main-img" alt="Pierre Gasly">
+        <div class="team-name">Pierre Gasly – Alpine</div>
+      </div>
+    </div>
+
+    <!-- p13 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRysTMzrFbsIzSasIDrnEp1EW1PlBiz0wjzIsTuiM_8rEyNNO3edt9Wh4ALgHrrwgBr0j8&usqp=CAU" class="main-img" alt="Valtteri Bottas">
+        <div class="team-name">Valtteri Bottas – Sauber</div>
+      </div>
+    </div>
+
+    <!-- p14 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://crazeracewears.com/cdn/shop/collections/zz.webp?v=1737225642" class="main-img" alt="Guanyu Zhou">
+        <div class="team-name">Guanyu Zhou – Sauber</div>
+      </div>
+    </div>
+
+    <!-- p15 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn.sportmonks.com/images/f1/drivers/kevinmagnussen.png" class="main-img" alt="Kevin Magnussen">
+        <div class="team-name">Kevin Magnussen – Haas</div>
+      </div>
+    </div>
+
+    <!-- p16 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\images.jpg" class="main-img" alt="Nico Hülkenberg">
+        <div class="team-name">Nico Hülkenberg – Haas</div>
+      </div>
+    </div>
+
+    <!-- p17 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-5.motorsport.com/images/mgl/2y3jXqg6/s8/yuki-tsunoda-red-bull-racing.jpg" class="main-img" alt="Yuki Tsunoda">
+        <div class="team-name">Yuki Tsunoda – Racing Bulls</div>
+      </div>
+    </div>
+
+    <!-- p18 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://f1grandprix.motorionline.com/wp-content/uploads/2024/02/daniel-ricciardo-racing-bulls-2.jpeg" class="main-img" alt="Daniel Ricciardo">
+        <div class="team-name">Daniel Ricciardo – Racing Bulls</div>
+      </div>
+    </div>
+
+    <!-- p19 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="https://cdn-7.motorsport.com/images/mgl/0rG38zm2/s800/alex-albon-williams.jpg" class="main-img" alt="Alex Albon">
+        <div class="team-name">Alex Albon – Williams</div>
+      </div>
+    </div>
+
+    <!-- p20 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\f1_2024_ls_wil_lg.png" class="main-img" alt="Logan Sargeant">
+        <div class="team-name">Logan Sargeant – Williams</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

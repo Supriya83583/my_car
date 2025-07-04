@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Race Results</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      background-image: url(https://plus.unsplash.com/premium_photo-1675855291447-3266ba923327?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVkJTIwcGF0dGVybnxlbnwwfHwwfHx8MA%3D%3D);
+    }
+
+    
+    .navbar {
+      background-color: #111;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      width:150px;
+      font-family: 'danger';
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ff0000;
+    }
+    .signin {
+      background-color: white;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      color: black;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .flag-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeOut 1s 0.5s forwards; /* Show for half sec, fade for 1 sec */
+    }
+
+    .flag {
+      width: 1000px;
+      height: 1000px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRWBEp6rD2DgCG03cW7tywML0bqYkfWup1A&s");
+      background-size: cover;
+      animation: waveFlag 1s ease-in-out infinite;
+    }
+
+    @keyframes waveFlag {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .results-section {
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1.5s forwards; 
+      padding: 60px 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-title {
+      font-size: 60px;
+      color: #ff0000;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    table {
+      width: 90%;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #444;
+    }
+
+    th {
+      color: white;
+      font-size: 20px;
+      background-color: #ff0000;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    td {
+      font-size: 16px;
+      color: #ddd;
+    }
+
+    tr:hover {
+      background-color: #222;
+    }
+
+    .flag-icon {
+      width: 24px;
+      height: 16px;
+      object-fit: cover;
+      margin-right: 8px;
+      vertical-align: middle;
+      border-radius: 3px;
+    }
+
+    .profile-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 8px;
+      object-fit: cover;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv9tp5_4ykuziPP2ISVFpszH6aJ99bcRs6g&s" class="logo me-3">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index1.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="cars1.html">CARS</a></li>
+          <li class="nav-item"><a class="nav-link" href="teams1.html">TEAMS</a></li>
+          <li class="nav-item"><a class="nav-link" href="players1.html">PLAYERS</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule1.html">SCHEDULE</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">RESULTS</a></li>
+        </ul>
+        <button class="signin">Sign in</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+
+  <!-- RESULTS SECTION -->
+  <div class="results-section">
+    <div class="result-title">🏁 Race Results</div>
+     <table>
+      <tr>
+        <th>GRAND PRIX</th>
+        <th>DATE</th>
+        <th>WINNER</th>
+        <th>TEAM</th>
+        <th>LAPS</th>
+        <th>TIME</th>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+       <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+     
+      <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+       <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+  
+      <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+       <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+    
+      <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+       <tr>
+        <td><img src="https://flagcdn.com/w40/mc.png" class="flag-icon">Monaco GP</td>
+        <td>May 26, 2025</td>
+        <td><img src="https://cdn-2.motorsport.com/images/mgl/6D1XbeV0/s800/max-verstappen-red-bull-racing.jpg" class="profile-icon">Max Verstappen</td>
+        <td><img src="https://crystalpng.com/wp-content/uploads/2025/05/red_bull_logo.png" class="profile-icon">Red Bull</td>
+        <td>78</td>
+        <td>1:34:56.789</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/es.png" class="flag-icon">Spanish GP</td>
+        <td>June 2, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/6753832b78f53643f93a2dbc/0x0.jpg?format=jpg&crop=1263,1266,x300,y30,safe&height=416&width=416&fit=bounds" class="profile-icon">Charles Leclerc</td>
+        <td><img src="https://logoeps.com/wp-content/uploads/2013/01/ferrari-emblem-logo-vector.png" class="profile-icon">Ferrari</td>
+        <td>66</td>
+        <td>1:28:32.540</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>June 9, 2025</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQEL--pj7TfjfsIEJk42W71Cn4zDq9pq6Tmw&s" class="profile-icon">Lewis Hamilton</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:21:14.221</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/gb.png" class="flag-icon">British GP</td>
+        <td>June 23, 2025</td>
+        <td><img src="https://cdn-4.motorsport.com/images/mgl/0ZRQlG80/s800/lance-stroll-aston-martin.jpg" class="profile-icon">Lance Stroll</td>
+        <td><img src="https://1000logos.net/wp-content/uploads/2020/02/Aston-Martin-Logo.jpg" class="profile-icon">Aston Martin</td>
+        <td>52</td>
+        <td>1:29:10.874</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/hu.png" class="flag-icon">Hungarian GP</td>
+        <td>July 7, 2025</td>
+        <td><img src="https://www.formula1points.com/images/driver/esteban-ocon.webp" class="profile-icon">Esteban Ocon</td>
+        <td><img src="https://brandlogos.net/wp-content/uploads/2022/08/alpine_logomark-logo_brandlogos.net_pzhvz.png" class="profile-icon">Alpine</td>
+        <td>70</td>
+        <td>1:39:00.000</td>
+      </tr>
+      <tr>
+        <td><img src="https://flagcdn.com/w40/be.png" class="flag-icon">Belgian GP</td>
+        <td>July 21, 2025</td>
+        <td><img src="https://imageio.forbes.com/specials-images/imageserve/675383c944901da3ffa94963/0x0.jpg?format=jpg&crop=1861,1860,x685,y12,safe&height=416&width=416&fit=bounds" class="profile-icon">George Russell</td>
+        <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0nYQ0IdVBSyIWZBHmaNZA7gF0pqBqtQvAKA&s" class="profile-icon">Mercedes</td>
+        <td>44</td>
+        <td>1:24:33.120</td>
+      </tr>
+      
+    </table>
+  </div>
+
+</body>
+</html>

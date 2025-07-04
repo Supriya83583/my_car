@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Central</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Stencil', sans-serif;
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVJhSFCFzH72ZYdzzRvXrPNI72u8isPDLPrw&s);
+    }
+
+    .navbar {
+      background-color: #111;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      width: 150px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ff0000;
+    }
+
+    .signin {
+      background-color: white;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      color: black;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .team-section {
+      padding: 40px 20px;
+    }
+
+    .team-img-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .team-img-container img.main-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid #444;
+      border-radius: 10px;
+    }
+
+    .team-logo {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      background-color: white;
+      padding: 2px;
+    }
+
+    .team-name {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 17px;
+      font-weight: bold;
+      color: white;
+      background: rgb(0, 0, 0);
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+        .flag-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeOut 1s 0.5s forwards; /* Show for half sec, fade for 1 sec */
+    }
+
+    .flag {
+      width: 1000px;
+      height: 1000px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRWBEp6rD2DgCG03cW7tywML0bqYkfWup1A&s");
+      background-size: cover;
+      animation: waveFlag 1s ease-in-out infinite;
+    }
+
+    @keyframes waveFlag {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .results-section {
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1.5s forwards; 
+      padding: 60px 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv9tp5_4ykuziPP2ISVFpszH6aJ99bcRs6g&s" class="logo me-3">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index1.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="cars1.html">CARS</a></li>
+          <li class="nav-item"><a class="nav-link " href="teams1.html">TEAMS</a></li>
+          <li class="nav-item"><a class="nav-link" href="players1.html">PLAYERS</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule1.html">SCHEDULE</a></li>
+          <li class="nav-item"><a class="nav-link" href="results1.html">RESULTS</a></li>
+        </ul>
+        <button class="signin">Sign in</button>
+      </div>
+    </div>
+  </nav>
+    <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+
+  <!-- TEAMS SECTION -->
+  <div class="container team-section">
+    <h2 class="mb-4 text-danger text-center">🏑 F1 TEAMS</h2>
+    <div class="row g-4">
+
+      <!-- Red Bull -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://i.ytimg.com/vi/85W4O8wODAc/maxresdefault.jpg" class="main-img" alt="Red Bull Principal">
+          <img src="https://i.ytimg.com/vi/85W4O8wODAc/maxresdefault.jpg" class="team-logo" alt="Red Bull Logo">
+          <div class="team-name">RED BULL</div>
+        </div>
+      </div>
+
+      <!-- Ferrari -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtKHB-FiGMRDyjd6KCU2I0kMPmoVZmy4e7QA&s" class="main-img" alt="Ferrari Principal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtKHB-FiGMRDyjd6KCU2I0kMPmoVZmy4e7QA&s" class="team-logo" alt="Ferrari Logo">
+          <div class="team-name">FERRARI</div>
+        </div>
+      </div>
+
+      <!-- Mercedes -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65-KnLQ1WAe6EkVRBBmcEUylxqVYCVEAq8A&s" class="main-img" alt="Mercedes Principal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65-KnLQ1WAe6EkVRBBmcEUylxqVYCVEAq8A&s" class="team-logo" alt="Mercedes Logo">
+          <div class="team-name">MERCEDES</div>
+        </div>
+      </div>
+
+      <!-- McLaren -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/500/446/non_2x/mclaren-brand-logo-car-symbol-name-orange-design-british-automobile-illustration-free-vector.jpg" class="main-img" alt="McLaren Principal">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/500/446/non_2x/mclaren-brand-logo-car-symbol-name-orange-design-british-automobile-illustration-free-vector.jpg" class="team-logo" alt="McLaren Logo">
+          <div class="team-name">MCLAREN</div>
+        </div>
+      </div>
+
+      <!-- Alpine -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9ST8yZn8SGxE9sA0MMZNkYwGYCZ7Y1mR0Q&s" class="main-img" alt="Alpine Principal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9ST8yZn8SGxE9sA0MMZNkYwGYCZ7Y1mR0Q&s" class="team-logo" alt="Alpine Logo">
+          <div class="team-name">ALPINE</div>
+        </div>
+      </div>
+
+      <!-- Aston Martin -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://cdn.vectorstock.com/i/1000v/63/25/aston-martin-brand-logo-symbol-black-design-vector-45966325.jpg" class="main-img" alt="Aston Martin Principal">
+          <img src="https://cdn.vectorstock.com/i/1000v/63/25/aston-martin-brand-logo-symbol-black-design-vector-45966325.jpg" class="team-logo" alt="Aston Martin Logo">
+          <div class="team-name">ASTON MARTIN</div>
+        </div>
+      </div>
+
+      <!-- Haas -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXlPmf9THPYuMjAuuLI4EL6LOhb8nFWqifYg&s" class="main-img" alt="Haas Principal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXlPmf9THPYuMjAuuLI4EL6LOhb8nFWqifYg&s" class="team-logo" alt="Haas Logo">
+          <div class="team-name">HAAS</div>
+        </div>
+      </div>
+
+      <!-- Sauber (Stake F1) -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://preview.redd.it/sauber-has-changed-their-branding-to-reflect-entry-name-v0-eb1e5jwyq4kc1.jpg?width=640&crop=smart&auto=webp&s=64464c3180af0250a2ce14fcc2441cb857a91417" class="main-img" alt="Sauber Principal">
+          <img src="https://preview.redd.it/sauber-has-changed-their-branding-to-reflect-entry-name-v0-eb1e5jwyq4kc1.jpg?width=640&crop=smart&auto=webp&s=64464c3180af0250a2ce14fcc2441cb857a91417" class="team-logo" alt="Kick Sauber Logo">
+          <div class="team-name">KICK SAUBER</div>
+        </div>
+      </div>
+
+      <!-- Racing Bulls -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSKmB0eOJHM9gvxw9y7GFn6bmss8DVy-Ic2A&s" class="main-img" alt="Racing Bulls Principal">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSKmB0eOJHM9gvxw9y7GFn6bmss8DVy-Ic2A&s" class="team-logo" alt="Racing Bulls Logo">
+          <div class="team-name">RACING BULLS</div>
+        </div>
+      </div>
+
+      <!-- Williams -->
+      <div class="col-md-3 col-sm-6">
+        <div class="team-img-container">
+          <img src="https://ih1.redbubble.net/image.2794502960.9981/st,medium,507x507-pad,600x600,f8f8f8.jpg" class="main-img" alt="Williams Principal">
+          <img src="https://ih1.redbubble.net/image.2794502960.9981/st,medium,507x507-pad,600x600,f8f8f8.jpg" class="team-logo" alt="Williams Logo">
+          <div class="team-name">WILLIAMS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

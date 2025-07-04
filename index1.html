@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Central</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Stencil', 'Eras Demi ITC', 'Bauhaus 93', sans-serif;
+      animation: fadeBody 1s ease-in-out;
+    }
+
+    @keyframes fadeBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .navbar {
+      background-color: #111;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+      animation: slideDown 1s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      width: 150px;
+      font-family: 'danger';
+      transition: all 0.3s ease-in-out;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ff0000;
+      transform: scale(1.1);
+    }
+
+    .signin {
+      background-color: white;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      color: black;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      transition: transform 0.3s ease;
+    }
+
+    .signin:hover {
+      transform: scale(1.1);
+    }
+
+    .highlight {
+      background-color: #8b0404;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+      padding: 30px;
+    }
+
+    .highlight h2 {
+      color: #ff0000;
+      animation: pulseText 2s infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .highlight-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      scroll-behavior: smooth;
+      padding-bottom: 15px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .highlight-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      min-width: 300px;
+      max-width: 300px;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card-subtext {
+      font-size: 14px;
+      color: #bbb;
+      font-family: sans-serif;
+    }
+
+    .card-text {
+      font-size: 15px;
+    }
+
+    .flag-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeOut 1s 0.5s forwards;
+    }
+
+    .flag {
+      width: 1000px;
+      height: 1000px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRWBEp6rD2DgCG03cW7tywML0bqYkfWup1A&s");
+      background-size: cover;
+      animation: waveFlag 1s ease-in-out infinite;
+    }
+
+    @keyframes waveFlag {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .results-section {
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1.5s forwards;
+      padding: 60px 20px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(80px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv9tp5_4ykuziPP2ISVFpszH6aJ99bcRs6g&s" class="logo me-3">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item "><a class="nav-link" href="index1.html">HOME</a></li>
+          <li class="nav-item "><a class="nav-link" href="cars1.html">CARS</a></li>
+          <li class="nav-item "><a class="nav-link" href="teams1.html">TEAMS</a></li>
+          <li class="nav-item "><a class="nav-link" href="players1.html">PLAYERS</a></li>
+          <li class="nav-item "><a class="nav-link" href="schedule1.html">SCHEDULE</a></li>
+          <li class="nav-item "><a class="nav-link" href="results1.html">RESULTS</a></li>
+        </ul>
+        <button class="signin">Sign in</button>
+      </div>
+    </div>
+  </nav>
+
+    <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+  <!-- MAIN IMAGE -->
+  <div class="container-fluid p-0">
+    <img src="https://e0.365dm.com/25/02/2048x1152/skysports-pirelli-f1-2025-test_6820918.jpg?20250206074138" class="img-fluid w-100" style="max-height: 90vh; object-fit: cover;" />
+  </div>
+
+   <!-- HIGHLIGHTS -->
+   <div class="highborder">
+    
+  <div class="highlight">
+    
+    <h2 class="mb-4">Race Highlights --></h2>
+    <div class="highlight-scroll">
+
+      <!-- CARD 1 -->
+      <div class="card bg-dark text-white">
+        <img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/44-2011.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Monaco GP</h5>
+          <p class="card-subtext">Street Circuit • Iconic Location</p>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, voluptatibus...<span class="text-danger">read more</span></p>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card bg-dark text-white">
+        <img src="https://i.pinimg.com/736x/05/a2/fb/05a2fb7fa3c30b5a05f2cdce7e75d748.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Silverstone</h5>
+          <p class="card-subtext">Oldest GP • Flat-Out Corners</p>
+          <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, ipsum!.. <span class="text-danger">read more</span></p>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card bg-dark text-white">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB4cKxKNJjPQqc0xJQz9vgarvIMGL5zjOL1A&s" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Spa-Francorchamps</h5>
+          <p class="card-subtext">Rain-Prone • Legendary Corners</p>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, ad... <span class="text-danger">read more</span></p>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="card bg-dark text-white">
+        <img src="https://binaries.pirelli.com/2023/04/26/153944047-6f09c7b4-ce84-4f6f-a0af-510497b51d31.jpg" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Baku GP</h5>
+          <p class="card-subtext">City Track • Long Straights</p>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium, quas... <span class="text-danger">read more</span></p>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="card bg-dark text-white">
+        <img src="https://motorsporttickets.com/blog/wp-content/uploads/2024/07/Japan-Stats.png" class="card-img-top" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">Suzuka Circuit</h5>
+          <p class="card-subtext">Japan • Figure-8 Track</p>
+          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, error.... <span class="text-danger">read more</span></p>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+<div class="card bg-dark text-white">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwaxUzf0dJ7bPN_4S4PcdSzL0NyrQqA_No3A&s" class="card-img-top" style="height: 200px; object-fit: cover;">
+  <div class="card-body">
+    <h5 class="card-title">Interlagos</h5>
+    <p class="card-subtext">Brazil • Home of Chaos</p>
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, reiciendis!... <span class="text-danger">read more</span></p>
+  </div>
+</div>
+
+<!-- CARD 7 -->
+<div class="card bg-dark text-white">
+  <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7" class="card-img-top" style="height: 200px; object-fit: cover;">
+  <div class="card-body">
+    <h5 class="card-title">Las Vegas GP</h5>
+    <p class="card-subtext">USA • Neon Lights & Speed</p>
+    <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam, eos.... <span class="text-danger">read more</span></p>
+  </div>
+</div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- MUST-WATCH SHOTS -->
+  <div class="container video-section">
+    <h2>🔥 Must Watch Driver Shots 🔥</h2>
+    <div class="row g-4">
+
+      <!-- Max Verstappen -->
+      <div class="col-md-4">
+        <p class="fw-bold">🚀 Max Verstappen's Dominance in 2023</p>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/fYaC4nlg0s0" title="Max Verstappen Highlights" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Lewis Hamilton -->
+      <div class="col-md-4">
+        <p class="fw-bold">👑 Lewis Hamilton Pure Onboard Skills</p>
+        <div class="ratio ratio-16x9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/gTd7WLkQeu8?si=F1oK2wgb7sZB_nO5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Charles Leclerc -->
+      <div class="col-md-4">
+        <p class="fw-bold">🎯 Charles Leclerc’s Smooth Monaco Pole</p>
+        <div class="ratio ratio-16x9">
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/K2RhjTqocKo?si=acYQy4v6_615KIRo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Historic F1 Moments -->
+      <div class="col-md-4">
+        <p class="fw-bold">📽️ Iconic Historic F1 Moments</p>
+        <div class="ratio ratio-16x9">
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/aoz0zigvuYs?si=OVpjiz7qb7fvHBtR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Sergio Perez -->
+      <div class="col-md-4">
+        <p class="fw-bold">🔥 Sergio Perez Last-to-First Comeback</p>
+        <div class="ratio ratio-16x9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/on-Jj9oRWrM?si=KOxnmRp7dNGM9FOT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- Sebastian Vettel -->
+      <div class="col-md-4">
+        <p class="fw-bold">🐐 Vettel's Rain Masterclass in Brazil</p>
+        <div class="ratio ratio-16x9">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/j1-kM2o0Rmo?si=APoX24ucGkkxY0d9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

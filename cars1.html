@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Central</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Stencil', 'Eras Demi ITC', 'Bauhaus 93', sans-serif;
+    }
+
+    .navbar {
+      background-color: #111;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      width:150px;
+      font-family: 'danger';
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ff0000;
+    }
+
+    .signin {
+      background-color: white;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      color: black;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .highlight {
+      background-color: #8b0404;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+      padding: 30px;
+    }
+
+    .highlight h2 {
+      color: #ff0000;
+    }
+
+    .highlight{
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+    float: left;
+      padding-bottom: 15px;
+      -ms-overflow-style: none;
+      
+    }
+
+    .highlight-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      min-width: 300px;
+      max-width: 300px;
+    }
+
+    .card-subtext {
+      font-size: 14px;
+      color: #bbb;
+      font-family: sans-serif;
+    }
+
+    .card-text {
+      font-size: 15px;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Stencil', sans-serif;
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVJhSFCFzH72ZYdzzRvXrPNI72u8isPDLPrw&s);
+    }
+
+    .team-section {
+      padding: 40px 20px;
+      
+    }
+
+    .team-img-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .team-img-container img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border: 2px solid #444;
+      border-radius: 10px;
+    }
+
+    .team-name {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #ff0000;
+      font-size: 20px;
+      padding: 5px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+        .flag-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeOut 1s 0.5s forwards; /* Show for half sec, fade for 1 sec */
+    }
+
+    .flag {
+      width: 1000px;
+      height: 1000px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRWBEp6rD2DgCG03cW7tywML0bqYkfWup1A&s");
+      background-size: cover;
+      animation: waveFlag 1s ease-in-out infinite;
+    }
+
+    @keyframes waveFlag {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .results-section {
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1.5s forwards; 
+      padding: 60px 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv9tp5_4ykuziPP2ISVFpszH6aJ99bcRs6g&s" class="logo me-3">
+       
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item "><a class="nav-link" href="index1.html">HOME</a></li>
+          <li class="nav-item "><a class="nav-link" href="cars1.html">CARS</a></li>
+          <li class="nav-item "><a class="nav-link" href="teams1.html">TEAMS</a></li>
+          <li class="nav-item "><a class="nav-link" href="players1.html">PLAYERS</a></li>
+          <li class="nav-item "><a class="nav-link" href="schedule1.html">SCHEDULE</a></li>
+          <li class="nav-item "><a class="nav-link" href="results1.html">RESULTS</a></li>
+        </ul>
+        <button class="signin">Sign in</button>
+      </div>
+    </div>
+  </nav>
+
+    <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+
+   <!-- Cars -->
+   <div class="container team-section">
+  <h2 class="mb-4 text-danger">🏎️ F1 CARS</h2>
+  <div class="row g-4">
+
+    <!-- Car 1 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\red bull2.jpg" alt="Red Bull Racing">
+        <div class="team-name">Red Bull Racing</div>
+      </div>
+    </div>
+
+    <!-- Car 2 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\ferrari2.jpg" alt="Ferrari">
+        <div class="team-name">Ferrari</div>
+      </div>
+    </div>
+
+    <!-- Car 3 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\mercedes2.jpg" alt="Mercedes">
+        <div class="team-name">Mercedes</div>
+      </div>
+    </div>
+
+    <!-- Team 4 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\mclaren2.jpg" alt="McLaren">
+        <div class="team-name">McLaren</div>
+      </div>
+    </div>
+
+    <!-- Team 5 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\alpine.jpg" alt="McLaren">
+        <div class="team-name">Alpine</div>
+      </div>
+    </div>
+
+    <!-- Team 6 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\aston martin.jpg" alt="McLaren">
+        <div class="team-name">Aston Martin</div>
+      </div>
+    </div>
+
+    <!-- Team 7 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\haas.jpg" alt="McLaren">
+        <div class="team-name">Hass</div>
+      </div>
+    </div>
+
+    <!-- Team 8 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\kick2.jpg" alt="McLaren">
+        <div class="team-name">Kick Sauber</div>
+      </div>
+    </div>
+
+    <!-- Team 9 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\alpha tauri.jpg" alt="McLaren">
+        <div class="team-name">Racing Bulls</div>
+      </div>
+    </div>
+
+    <!-- Team 10 -->
+    <div class="col-md-6">
+      <div class="team-img-container">
+        <img src="C:\Users\Admin\OneDrive\Desktop\cars teams\Williams.png" alt="McLaren">
+        <div class="team-name">Williams</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  
+</body>
+</html>

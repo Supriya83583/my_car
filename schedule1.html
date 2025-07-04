@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Central</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Stencil', sans-serif;
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVJhSFCFzH72ZYdzzRvXrPNI72u8isPDLPrw&s);
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .navbar {
+      background-color: #111;
+      background-image: url('https://t4.ftcdn.net/jpg/03/22/47/53/360_F_322475399_NFr8Jk9mUcfVVLQ9lRWd3MyncXLctpm7.jpg');
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      width: 150px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ff0000;
+    }
+
+    .signin {
+      background-color: white;
+      font-size: 16px;
+      padding: 5px 15px;
+      border-radius: 10px;
+      color: black;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .card {
+      background-color: #1c1c1c;
+      border-left: 6px solid #ff0000;
+      border-radius: 15px;
+      color: #ccc;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    }
+
+    .card:hover::before {
+      content: "";
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlvPBcc4D4D51oVdGQlt60rOx_bwJMQVp7Qg&s');
+      background-size: 60px 60px;
+      background-repeat: no-repeat;
+      position: absolute;
+      left: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: racecar 0.6s ease forwards;
+    }
+
+    @keyframes racecar {
+      to {
+        left: 20px;
+        opacity: 0;
+      }
+    }
+
+    .card-img {
+      width: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1rem 1.5rem;
+    }
+
+    .card-title {
+      color: #ff0000;
+      font-size: 30px;
+    }
+
+    .highlight {
+      border-left: 8px solid #fff;
+      background: #2a2a2a;
+    }
+
+    h1 {
+      color: #ffffff;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 1.5rem;
+      font-size: 90px;
+    }
+    h4 {
+      color: #00b7ff;
+      font-size: 40px;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    /* Divider line */
+    hr {
+      border: 2px solid #ff0000;
+      margin: 50px 0;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+        .flag-scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeOut 1s 0.5s forwards; /* Show for half sec, fade for 1 sec */
+    }
+
+    .flag {
+      width: 1000px;
+      height: 1000px;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJRWBEp6rD2DgCG03cW7tywML0bqYkfWup1A&s");
+      background-size: cover;
+      animation: waveFlag 1s ease-in-out infinite;
+    }
+
+    @keyframes waveFlag {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(2deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .results-section {
+      opacity: 0;
+      animation: fadeInUp 1s ease-in-out 1.5s forwards; 
+      padding: 60px 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsv9tp5_4ykuziPP2ISVFpszH6aJ99bcRs6g&s" class="logo me-3">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index1.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="cars1.html">CARS</a></li>
+          <li class="nav-item"><a class="nav-link" href="teams1.html">TEAMS</a></li>
+          <li class="nav-item"><a class="nav-link" href="players1.html">PLAYERS</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule1.html">SCHEDULE</a></li>
+          <li class="nav-item"><a class="nav-link" href="results1.html">RESULTS</a></li>
+        </ul>
+        <button class="signin">Sign in</button>
+      </div>
+    </div>
+  </nav>
+    <!-- FLAG INTRO (checkered flag) -->
+  <div class="flag-scene">
+    <div class="flag"></div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="container my-5">
+    <h1>Race Schedule</h1>
+    <h4>Last 3 Matches</h4>
+  <!-- Match 1 -->
+<div class="card mb-4">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSED8yZIFuaaScnE1N6RbOjyJpvrHc-BH3oxw&s" class="card-img" alt="Monaco GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Red Bull vs Ferrari</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> Monaco GP</p>
+    <p class="card-text"><strong>Venue:</strong> Circuit de Monaco</p>
+    <p class="card-text"><strong>Top Drivers:</strong> Max Verstappen, Charles Leclerc</p>
+    <p class="card-text " style="color: rgb(11, 252, 11);"><strong>Winner:</strong> Max Verstappen (Red Bull)</p>
+    <p class="card-text"><small>May 26, 2025</small></p>
+  </div>
+</div>
+
+<!-- Match 2 -->
+<div class="card mb-4">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThPX27QaLnhQkbJ3EpGxiIG3unPVTd4kCmbQ&s" class="card-img" alt="Spanish GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Ferrari vs Mercedes</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> Spanish GP</p>
+    <p class="card-text"><strong>Venue:</strong> Circuit de Barcelona-Catalunya</p>
+    <p class="card-text"><strong>Top Drivers:</strong> Charles Leclerc, George Russell</p>
+    <p class="card-text" style="color: rgb(9, 227, 9);"><strong>Winner:</strong> Charles Leclerc (Ferrari)</p>
+    <p class="card-text"><small>June 2, 2025</small></p>
+  </div>
+</div>
+
+<!-- Match 3 -->
+<div class="card mb-4">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdR8wGn7hY5L5wi1zE9hhYLS0wVuI5T2IsaQ&s" class="card-img" alt="Canadian GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Mercedes vs McLaren</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> Canadian GP</p>
+    <p class="card-text"><strong>Venue:</strong> Circuit Gilles Villeneuve</p>
+    <p class="card-text"><strong>Top Drivers:</strong> Lewis Hamilton, Lando Norris</p>
+    <p class="card-text" style="color: rgb(9, 205, 9);"><strong>Winner:</strong> Lewis Hamilton (Mercedes)</p>
+    <p class="card-text"><small>June 9, 2025</small></p>
+  </div>
+</div>
+
+<h4>Next Match</h4>
+
+<!-- Next Match Highlight -->
+<div class="card mb-4 highlight">
+  <img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2024/02/Ferrari-vs-Red-Bull-scaled.jpg" class="card-img" alt="Austrian GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Red Bull vs Ferrari</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> Austrian GP</p>
+    <p class="card-text"><strong>Venue:</strong> Red Bull Ring</p>
+    <p class="card-text"><strong>Key Drivers:</strong> Max Verstappen, Carlos Sainz</p>
+    <p class="card-text text-warning"><strong>Starts:</strong> June 16, 2025</p>
+  </div>
+</div>
+
+<h4>Upcoming 3 Matches</h4>
+
+<!-- Match 5 -->
+<div class="card mb-4">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ34judv_ilI_iwIJTOdYtDMRtxjNbx9XzBPE04LN_JHOki8s8Xfu85Y8lEz5nJ-lvp7A8&usqp=CAU" class="card-img" alt="British GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Mercedes vs Aston Martin</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> British GP</p>
+    <p class="card-text"><strong>Venue:</strong> Silverstone Circuit</p>
+    <p class="card-text"><strong>Expected Showdown:</strong> Lewis Hamilton vs Lance Stroll</p>
+    <p class="card-text"><small>June 23, 2025</small></p>
+  </div>
+</div>
+
+<!-- Match 6 -->
+<div class="card mb-4">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ34judv_ilI_iwIJTOdYtDMRtxjNbx9XzBPE04LN_JHOki8s8Xfu85Y8lEz5nJ-lvp7A8&usqp=CAU" class="card-img" alt="Hungarian GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Ferrari vs Alpine</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> Hungarian GP</p>
+    <p class="card-text"><strong>Venue:</strong> Hungaroring</p>
+    <p class="card-text"><strong>Top Drivers:</strong> Charles Leclerc, Esteban Ocon</p>
+    <p class="card-text"><small>July 7, 2025</small></p>
+  </div>
+</div>
+
+<!-- Match 7 -->
+<div class="card mb-4">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ34judv_ilI_iwIJTOdYtDMRtxjNbx9XzBPE04LN_JHOki8s8Xfu85Y8lEz5nJ-lvp7A8&usqp=CAU" class="card-img" alt="Belgian GP">
+  <div class="card-body">
+    <h5 class="card-title" style="font-size: 30px;">Red Bull vs Mercedes</h5>
+    <p class="card-text"><strong>Grand Prix:</strong> Belgian GP</p>
+    <p class="card-text"><strong>Venue:</strong> Spa-Francorchamps</p>
+    <p class="card-text"><strong>Racers to Watch:</strong> Verstappen, Russell</p>
+    <p class="card-text"><small>July 21, 2025</small></p>
+  </div>
+</div>
+
+
+  </div>
+  </div>
+</body>
+</html>
